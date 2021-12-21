@@ -1,0 +1,31 @@
+{
+  "name": "file-upload-system-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "body-parser": "^1.19.1",
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.2",
+    "express-fileupload": "^1.2.1",
+    "express-fileuploader": "^0.0.7",
+    "mongoose": "^6.1.2",
+    "nodemon": "^2.0.15"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon ./src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/parashar-aakash/file-upload-system-backend.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/parashar-aakash/file-upload-system-backend/issues"
+  },
+  "homepage": "https://github.com/parashar-aakash/file-upload-system-backend#readme"
+}
