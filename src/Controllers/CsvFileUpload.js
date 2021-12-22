@@ -7,9 +7,7 @@ exports.uploadFile = async (req, res, next) => {
     // console.log(files);
 
     if (files.length === 0) {
-      const error = new Error("Please select a File");
-      error.httpStatusCode = 400;
-      return next(error);
+     res.send("Please select a File");
     }
 
     for (i = 0; i < files.length; i++) {
@@ -22,8 +20,6 @@ exports.uploadFile = async (req, res, next) => {
       msg: "file uploaded Successfully",
     });
   } catch (err) {
-    return next(
-      new ErrorResponse(`Error in file uploading: ${err.message}`, 400)
-    );
+    return err;
   }
 };
