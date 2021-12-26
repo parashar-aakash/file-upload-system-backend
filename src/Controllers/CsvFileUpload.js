@@ -3,6 +3,7 @@ const CsvFile = require("../Models/CsvFile");
 // Upload Files
 exports.uploadFile = async (req, res, next) => {
   try {
+    console.log('request', request.body);
     const files = req.files;
     // console.log(files);
 
