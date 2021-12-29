@@ -1,10 +1,13 @@
 const mongoose = require("mongoose");
+const multer = require("multer");
+const path = require("path");
+const FILES_PATH = path.join("/uploads/files");
 
 const CsvFileSchema = new mongoose.Schema({
 
-    Handle:{ type: String, required: [true] },
-    Title:{ type: String, required: [true] },
-    Body:{ type: String, required: [true] },
+    Handle:{ type: String },
+    Title:{ type: String },
+    Body:{ type: String },
     Vendor:{ type: String },
     Tags:{ type: String },
     Published:{ type: String },
@@ -55,4 +58,18 @@ const CsvFileSchema = new mongoose.Schema({
 
 });
 
-module.exports = mongoose.model("CsvFile", CsvFileSchema);
+/*******SETTINGS FOR UPLOADING FILE USING MULTER****************/
+let storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, path.join(__dirname, "..", FILES_PATH));
+    },
+    filename: function (req, file, cb) {
+      cb(null, file.fieldname + '-' + Date.now());
+    }
+  });
+
+  //static functions
+  CsvFileSchema.statics.uploadedFile = multer({ storage: storage }).single("file");
+  CsvFileSchema.statics.filePath = FILES_PATH;
+
+module.exports = mongoose.model("CsvFiles", CsvFileSchema);
