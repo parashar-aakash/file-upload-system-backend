@@ -58,18 +58,16 @@ const CsvFileSchema = new mongoose.Schema({
 
 });
 
-/*******SETTINGS FOR UPLOADING FILE USING MULTER****************/
-let storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-      cb(null, path.join(__dirname, "..", FILES_PATH));
-    },
-    filename: function (req, file, cb) {
-      cb(null, file.fieldname + '-' + Date.now());
-    }
-  });
+// let storage = multer.diskStorage({
+//     destination: function (req, file, cb) {
+//       cb(null, path.join(__dirname, "..", FILES_PATH));
+//     },
+//     filename: function (req, file, cb) {
+//       cb(null, file.fieldname + '-' + Date.now());
+//     }
+//   });
 
-  //static functions
-  CsvFileSchema.statics.uploadedFile = multer({ storage: storage }).single("file");
-  CsvFileSchema.statics.filePath = FILES_PATH;
+//   CsvFileSchema.statics.uploadedFile = multer({ storage: storage }).single("file");
+//   CsvFileSchema.statics.filePath = FILES_PATH;
 
 module.exports = mongoose.model("CsvFiles", CsvFileSchema);

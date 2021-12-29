@@ -1,12 +1,16 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const mongoose = require('mongoose');
+const { connect } = require('mongoose');
 const multer = require('multer');
 const { uploadFile } = require('./Controllers/CsvFileUpload');
 
-mongoose.connect('mongodb+srv://aman:aman@cluster0.yd8i9.mongodb.net/myFirstDatabase?retryWrites=true&w=majority')
+ connect('mongodb://aakash:aakash@cluster0-shard-00-00.kvzzj.mongodb.net:27017,cluster0-shard-00-01.kvzzj.mongodb.net:27017,cluster0-shard-00-02.kvzzj.mongodb.net:27017/myFirstDatabase?ssl=true&replicaSet=atlas-84hv7r-shard-0&authSource=admin&retryWrites=true&w=majority'
+, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true})
 .then(console.log('db connected'))
+.catch(err => console.log(err));
 
 const app = express();
 
