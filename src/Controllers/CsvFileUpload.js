@@ -3,16 +3,14 @@ const csv = require('csv-parser');
 const fs = require("fs");
 const path = require("path");
 
-/**********EXPORTING FUNCTION FOR Uploading ROUTE******************/
 module.exports.uploadFile = function(req, res){
     try{
       console.log('Requestttttt', req);
-         //Use for uploading file with note
          CsvFile.uploadedFile(req, res, function(err){
             if(err){
                 console.log("multer Error");
             }
-            console.log(req.file);
+            console.log('####################', req.file);
             if(req.file && req.file.mimetype == "application/vnd.ms-excel" || req.file && req.file.mimetype == "text/csv"){
                 console.log("true");
                 console.log(req.file);
@@ -24,13 +22,13 @@ module.exports.uploadFile = function(req, res){
                         if(err){
                             console.log(err)
                             return res.status(400).json({
-                                message: "Error in creating Note or Uploading File"
+                                message: "Error in Uploading File"
                             });
                         }
-                        // res.status(200).json({
-                        //     message: "File Uploaded"
+                        res.status(200).json({
+                            message: "File Uploaded"
                             
-                        // });
+                        });
                         return res.redirect("/");
                     }
                 );
