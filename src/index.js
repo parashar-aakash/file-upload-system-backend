@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const mongoose = require('mongoose');
+const multer = require('multer');
 
 mongoose.connect('mongodb+srv://aman:aman@cluster0.yd8i9.mongodb.net/myFirstDatabase?retryWrites=true&w=majority')
 .then(console.log('db connected'))
@@ -13,7 +14,7 @@ app.use(bodyParser.json());
 
 app.use(cors());
 
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3003;
 
 app.use('/uploads', express.static('/uploads'));
 
@@ -26,6 +27,13 @@ app.use('/uploads*', (req, res, next) => {
       next();
     }
   });
+
+  const upload = multer();
+  app.post("/files", upload.single("file"), (req, res, next) => { 
+    console.log("requestBody", req.body, req.file);
+    res.send(req.file);
+
+   })
 
   app.listen(PORT, (err) => {
     if (err) {
