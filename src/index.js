@@ -3,7 +3,8 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const { connect } = require('mongoose');
 const multer = require('multer');
-const { uploadFile } = require('./Controllers/CsvFileUpload');
+const { uploadFile } = require('./Controllers/Csv/CsvFileUpload');
+const { ReportingFilesList } = require('./Controllers/ReportingList/ReportingFiles');
 
  connect('mongodb://aakash:aakash@cluster0-shard-00-00.kvzzj.mongodb.net:27017,cluster0-shard-00-01.kvzzj.mongodb.net:27017,cluster0-shard-00-02.kvzzj.mongodb.net:27017/myFirstDatabase?ssl=true&replicaSet=atlas-84hv7r-shard-0&authSource=admin&retryWrites=true&w=majority'
 , {
@@ -35,6 +36,7 @@ const PORT = process.env.PORT || 3003;
 
   const upload = multer();
   app.post("/files", upload.single("file"),uploadFile)
+  app.get("/fileList", ReportingFilesList)
 
   app.listen(PORT, (err) => {
     if (err) {

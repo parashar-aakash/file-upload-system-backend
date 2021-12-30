@@ -5,10 +5,10 @@ const FILES_PATH = path.join("/uploads/files");
 
 const CsvFileSchema = new mongoose.Schema({
 
-    Handle:{ type: String },
-    Title:{ type: String },
+    Handle:{ type: String, required: [true] },
+    Title:{ type: String, required: [true] },
     Body:{ type: String },
-    Vendor:{ type: String },
+    Vendor:{ type: String, required: [true] },
     Tags:{ type: String },
     Published:{ type: String },
     Option1_Name:{ type: String },
@@ -54,8 +54,8 @@ const CsvFileSchema = new mongoose.Schema({
     Status:{ type: String },
     Standard_Product_Type:{ type: String },
     
-    Custom_Product_Type: { type: String }
-
+    Custom_Product_Type: { type: String },
+    filename: { type: String }
 });
 
 // let storage = multer.diskStorage({
